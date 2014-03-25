@@ -11,7 +11,7 @@ $data = array(
 
 $registeredUser = new Registered('rbingham');
 
-$result = $registeredUser->login("rbingham", "test1234");
+$result = $registeredUser->login("rbingham", "test12345");
 
 if($result)
 	echo "That is the correct password\n";

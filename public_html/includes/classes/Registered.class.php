@@ -9,7 +9,7 @@ class Registered extends User {
 
 	//constructor. Requires username.
 	public function __construct($userName){
-		$this->mysql = new mysqli(dbHost, dbUser, dbPass, dbName);
+		parent::__construct();
 		$result = $this->mysql->query("SELECT * FROM user WHERE username='{$userName}';");
 
 		if($result->num_rows === 1){
