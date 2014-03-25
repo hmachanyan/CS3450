@@ -1,10 +1,11 @@
 <?php
 
 class User{
-	private $firstName = "Guest";
-	private $isAdmin = false;
-	private $lastName = "";
-	private $mysql;
+	protected $userName = "Guest";
+	protected $firstName = "Guest";
+	protected $isAdmin = false;
+	protected $lastName = "";
+	protected $mysql;
 
 	public function __construct(){
 		$this->mysql = new mysqli(dbHost,dbUser,dbPass,dbName);

@@ -1,6 +1,5 @@
 <?php
-
-	require_once('Thread.class.php');
+	require_once("Thread.class.php");
 
 	/**
 	* Post Class
@@ -19,11 +18,11 @@
 		// }
 
 		// ***** GETTERS & Setters *****
-		public getConent(){
+		public function getConent(){
 			return $this->$content;
 		}
 
-		public setContent($newContent){
+		public function setContent($newContent){
 			$this->$content = $newContent;
 		}
 	}

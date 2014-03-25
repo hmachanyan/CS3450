@@ -1,5 +1,5 @@
 <?php
-
+	require_once "Post.class.php";
 	/**
 	* Comment class
 	*/
@@ -14,6 +14,7 @@
 		// 		# code...
 		// 	}
 		// }
+	}
 
 
 ?>

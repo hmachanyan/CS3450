@@ -7,6 +7,24 @@ class Registered extends User {
 	private $password;
 	private $email;
 
+	//constructor. Requires username.
+	public function __construct($userName){
+		$this->mysql = new mysqli(dbHost, dbUser, dbPass, dbName);
+		$result = $this->mysql->query("SELECT * FROM user WHERE username='{$userName}';");
+
+		if($result->num_rows === 1){
+			$data = $result->fetch_assoc();
+			print_r($data);
+			$this->userId = $data['userID'];
+			$this->userName = $data['userName'];
+			$this->password = $data['password'];
+			$this->firstName = $data['firstName'];
+			$this->lastName = $data['lastName'];
+			$this->email = $data['email'];
+			$this->isAdmin = $data['isAdmin'];
+		}
+	}
+
 	//returns the password of the user
 	public function getPassword(){
 		return $this->password;
@@ -14,7 +32,29 @@ class Registered extends User {
 
 	//sets the password for the user. Requires authorized userId to change the password.
 	public function setPassword($password, $userId){
-		$this->password = $password;
+		$auth = false;
+		$userId = $this->mysql->real_escape_string($userId);
+		$password = $this->mysql->real_escape_string($password);
+		$query1 = "SELECT `isAdmin` FROM `user` WHERE userID = '$userId';";
+		$query2 = "UPDATE `user` SET `password`= '$password' WHERE userName = '{$this->userName}' AND userID = '{$this->userId}';";
+
+		if($userId == $this->userId)
+			$auth = true;
+		else{
+			$result = $this->mysql->query($query1);
+			$data = $result->fetch_assoc();
+			if($data['isAdmin']){
+				$auth = true;
+			}
+		}
+
+		if($auth){
+			$result = $this->mysql->query($query2);
+			$this->password = $password;
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	//returns userId
@@ -31,7 +71,7 @@ class Registered extends User {
 		return $this->email;
 	}
 
-	//sets email address for user. Requires authorized userId to change email  addres
+	//sets email address for user. Requires authorized userId to change email address
 	public function setEmail($email, $userId){
 		$this->email = $email;
 	}
@@ -43,7 +83,10 @@ class Registered extends User {
 
 	//logs in the user. returns true on success, false on failure
 	public function login($userName, $password){
-
+		if(strcmp($password,$this->password) === 0 && strcmp($userName, $this->userName) === 0)
+			return true;
+		else
+			return false;
 	}
 	
 	//ups or lowers the rate of the comment

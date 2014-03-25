@@ -8,7 +8,7 @@
 		private $title = "Test Title";
 		private $status = "T";
 		private $authorID = "0";
-		private $date = "01/01/14"
+		private $date = "01/01/14";
 		// ***** VARIABLES *****
 
 		// ***** CONSTRUCTOR *****
@@ -20,35 +20,35 @@
 		
 		// ***** GETTERS & SETTERS *****
 
-		public getTitle(){
-			return this->$title;
+		public function getTitle(){
+			return $this->$title;
 		}
 
-		public setTitle($newTitle){
+		public function setTitle($newTitle){
 			$this->$title = $newTitle;
 		}
 
-		public getStatus(){
-			return this->$title;
+		public function getStatus(){
+			return $this->$title;
 		}
 
-		public setStatus($newStatus){
+		public function setStatus($newStatus){
 			$this->$status = $newStatus;
 		}
 
-		public getAuthorID(){
-			return this->$authorID;
+		public function getAuthorID(){
+			return $this->$authorID;
 		}
 
-		public setAuthorID($newAuthorID){
+		public function setAuthorID($newAuthorID){
 			$this->$authorID = $newAuthorID;
 		}
 		
-		public getDate(){
-			return this->$date;
+		public function getDate(){
+			return $this->$date;
 		}
 
-		public setDate($newDate){
+		public function setDate($newDate){
 			$this->$date = $newDate;
 		}
 	}

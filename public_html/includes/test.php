@@ -9,8 +9,18 @@ $data = array(
 		'password' => 'test123',
 		'email' => 'reese.bingham@aggiemail.usu.edu');
 
-if( $User->register($data)){
-		echo "User successfully created\n";
-}
+$registeredUser = new Registered('rbingham');
+
+$result = $registeredUser->login("rbingham", "test1234");
+
+if($result)
+	echo "That is the correct password\n";
 else
-	echo "Registration failed\n";
+	echo "That is not correct\n";
+
+$result = $registeredUser->setPassword("test12345", 4);
+
+if($result)
+	echo "Success\n";
+else
+	echo "Failure\n";
