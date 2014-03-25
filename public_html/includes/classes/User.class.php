@@ -7,7 +7,7 @@ class User{
 	private $mysql;
 
 	public function __construct(){
-		$mysql = new MysqlDatabase();
+		$this->mysql = new mysqli(dbHost,dbUser,dbPass,dbName);
 	}
 	//searches for a thread that is on topic
 	public function searchTread($topic){
@@ -22,7 +22,7 @@ class User{
 	//receives user data and creates an account for them
 	public function register($userData = array()){
 		if(!empty($userData))
-			$result = $this->mysql->query("INSERT INTO `user`(`firstName`, `lastName`, `userName`, `password`, `email`) VALUES ('{$userData['firstName']}',{$userData['lastName']}, {$userData['userName']},{$userData['password']},{$userData['email']})");
+			$result = $this->mysql->query("INSERT INTO `user`(`firstName`, `lastName`, `userName`, `password`, `email`) VALUES ('{$userData['firstName']}','{$userData['lastName']}', '{$userData['userName']}','{$userData['password']}','{$userData['email']}');");
 		if($result)
 			return true;
 		else
