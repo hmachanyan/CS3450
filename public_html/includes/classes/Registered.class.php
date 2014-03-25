@@ -72,7 +72,29 @@ class Registered extends User {
 
 	//sets email address for user. Requires authorized userId to change email address
 	public function setEmail($email, $userId){
-		$this->email = $email;
+		$auth = false;
+                $userId = $this->mysql->real_escape_string($userId);
+                $email = $this->mysql->real_escape_string($email);
+                $query1 = "SELECT `isAdmin` FROM `user` WHERE userID = '$userId';";
+                $query2 = "UPDATE `user` SET `email`= '$email' WHERE userName = '{$this->userName}' AND userID = '{$this->userId}';";
+
+                if($userId == $this->userId)
+                        $auth = true;
+                else{
+                        $result = $this->mysql->query($query1);
+                        $data = $result->fetch_assoc();
+                        if($data['isAdmin']){
+                                $auth = true;
+                        }
+                }
+
+                if($auth){
+                        $result = $this->mysql->query($query2);
+                        $this->email = $email;
+                        return true;
+                }else{
+                        return false;
+                }
 	}
 	
 	//creates a comment on a thread. Requires threadId. Returns true on success, false on failure.

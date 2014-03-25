@@ -24,3 +24,10 @@ if($result)
 	echo "Success\n";
 else
 	echo "Failure\n";
+
+$result = $registeredUser->setEmail("test@test.com", 4);
+
+if($result)
+	echo "Success\n";
+else
+	echo "Failure\n";
