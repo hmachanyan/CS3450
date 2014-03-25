@@ -14,7 +14,6 @@ class Registered extends User {
 
 		if($result->num_rows === 1){
 			$data = $result->fetch_assoc();
-			print_r($data);
 			$this->userId = $data['userID'];
 			$this->userName = $data['userName'];
 			$this->password = $data['password'];
