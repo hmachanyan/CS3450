@@ -55,8 +55,4 @@ class User{
 		return $this->isAdmin;
 	}
 
-	//set isAdmin. Requires username of an user that is already an admin.
-	public function setIsAdmin($isAdmin, $adminUser){
-		
-	}
 }

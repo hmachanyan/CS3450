@@ -96,11 +96,30 @@ class Registered extends User {
                         return false;
                 }
 	}
-	
-	//creates a comment on a thread. Requires threadId. Returns true on success, false on failure.
-	public function createComment($threadId, $comment){
-		
-	}
+
+	//set isAdmin. Requires username of an user that is already an admin.
+        public function setIsAdmin($isAdmin, $adminUser){
+		$auth = false;
+                $isAdmin = $this->mysql->real_escape_string($isAdmin);
+                $adminUser = $this->mysql->real_escape_string($adminUser);
+                $query1 = "SELECT `isAdmin` FROM `user` WHERE userID = '$adminUser';";
+                $query2 = "UPDATE `user` SET `isAdmin`= '$isAdmin' WHERE userName = '{$this->userName}' AND userID = '{$this->userId}';";
+
+                $result = $this->mysql->query($query1);
+                $data = $result->fetch_assoc();
+                if($data['isAdmin']){
+                	$auth = true;
+                }
+
+                if($auth){
+                        $result = $this->mysql->query($query2);
+                        $this->isAdmin = $isAdmin;
+                        return true;
+                }else{
+                        return false;
+                }
+ 
+        }
 
 	//logs in the user. returns true on success, false on failure
 	public function login($userName, $password){
@@ -108,6 +127,11 @@ class Registered extends User {
 			return true;
 		else
 			return false;
+	}
+
+	//creates a comment on a thread. Requires threadId. Returns true on success, false on failure.
+	public function createComment($threadId, $comment){
+		
 	}
 	
 	//ups or lowers the rate of the comment

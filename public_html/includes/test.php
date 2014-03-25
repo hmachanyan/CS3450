@@ -31,3 +31,11 @@ if($result)
 	echo "Success\n";
 else
 	echo "Failure\n";
+
+
+$result = $registeredUser->setIsAdmin(false, 4);
+
+if($result)
+	echo "Success\n";
+else
+	echo "Failure\n";
