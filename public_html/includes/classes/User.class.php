@@ -11,10 +11,12 @@ class User{
 		$this->mysql = new mysqli(dbHost,dbUser,dbPass,dbName);
 	}
 
-	//receives user data and creates an account for them
+	//receives user data as an array and creates an account for them. Array variable names should be the same as database names.
 	public function register($userData = array()){
 		if(!empty($userData))
 			$result = $this->mysql->query("INSERT INTO `user`(`firstName`, `lastName`, `userName`, `password`, `email`) VALUES ('{$userData['firstName']}','{$userData['lastName']}', '{$userData['userName']}','{$userData['password']}','{$userData['email']}');");
+		else
+			$result = false;
 		if($result)
 			return true;
 		else

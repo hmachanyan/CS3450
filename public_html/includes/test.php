@@ -5,7 +5,7 @@ $User = new User();
 $data = array(
 		'firstName' => 'Reese',
 		'lastName' => 'Bingham',
-		'userName' => 'rbingham',
+		'userName' => 'rbingham1',
 		'password' => 'test123',
 		'email' => 'reese.bingham@aggiemail.usu.edu');
 
@@ -33,7 +33,7 @@ else
 	echo "Failure\n";
 
 
-$result = $registeredUser->setIsAdmin(false, 4);
+$result = $registeredUser->setIsAdmin(true, 4);
 
 if($result)
 	echo "Success\n";
@@ -53,3 +53,30 @@ if($result)
 	echo "Success\n";
 else
 	echo "Failure\n";
+
+$admin = new Admin('rbingham');
+
+$result = $admin->createUser($data);
+
+if($result)
+	echo "Success\n";
+else
+        echo "Failure\n";
+
+$data = array(
+                'firstName' => 'Dean',
+                'lastName' => 'Redington',
+                'userName' => 'rbingham1',
+                'password' => 'test1234',
+                'email' => 'test@test.com');
+
+$admin->editUser('rbingham1', $data);
+
+
+$result = $admin->resetPassword('rbingham1');
+
+if($result)
+        echo "Success\n";
+else
+        echo "Failure\n";
+
