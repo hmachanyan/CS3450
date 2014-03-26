@@ -29,17 +29,26 @@ class Registered extends User {
 		return $this->password;
 	}
 
+	//returns userId
+	public function getUserId(){
+		return $this->userId;
+	}
+
+	//returns user email address
+	public function getEmail(){
+		return $this->email;
+	}
+
 	//sets the password for the user. Requires authorized userId to change the password.
-	public function setPassword($password, $userId){
-		$auth = false;
+	public function setPassword($password, $userId, $auth = false){
 		$userId = $this->mysql->real_escape_string($userId);
 		$password = $this->mysql->real_escape_string($password);
 		$query1 = "SELECT `isAdmin` FROM `user` WHERE userID = '$userId';";
 		$query2 = "UPDATE `user` SET `password`= '$password' WHERE userName = '{$this->userName}' AND userID = '{$this->userId}';";
 
-		if($userId == $this->userId)
+		if($auth === false && $userId == $this->userId)
 			$auth = true;
-		else{
+		elseif($auth === false){
 			$result = $this->mysql->query($query1);
 			$data = $result->fetch_assoc();
 			if($data['isAdmin']){
@@ -56,31 +65,17 @@ class Registered extends User {
 		}
 	}
 
-	//returns userId
-	public function getUserId(){
-		return $this->userId;
-	}
-
-	public function setUserId($userId){
-		$this->userId = $userId;
-	}
-
-	//returns user email address
-	public function getEmail(){
-		return $this->email;
-	}
 
 	//sets email address for user. Requires authorized userId to change email address
-	public function setEmail($email, $userId){
-		$auth = false;
+	public function setEmail($email, $userId, $auth = false){
                 $userId = $this->mysql->real_escape_string($userId);
                 $email = $this->mysql->real_escape_string($email);
                 $query1 = "SELECT `isAdmin` FROM `user` WHERE userID = '$userId';";
                 $query2 = "UPDATE `user` SET `email`= '$email' WHERE userName = '{$this->userName}' AND userID = '{$this->userId}';";
 
-                if($userId == $this->userId)
+                if($auth === false && $userId == $this->userId){
                         $auth = true;
-                else{
+		}elseif($auth === false){
                         $result = $this->mysql->query($query1);
                         $data = $result->fetch_assoc();
                         if($data['isAdmin']){
@@ -120,6 +115,59 @@ class Registered extends User {
                 }
  
         }
+
+	//sets user lastName
+        public function setLastName($lastName, $userId, $auth = false){
+                $userId = $this->mysql->real_escape_string($userId);
+                $lastName = $this->mysql->real_escape_string($lastName);
+                $query1 = "SELECT `isAdmin` FROM `user` WHERE userID = '$userId';";
+                $query2 = "UPDATE `user` SET `email`= '$lastName' WHERE userName = '{$this->userName}' AND userID = '{$this->userId}';";
+
+                if($auth === false && $userId == $this->userId)
+                        $auth = true;
+                elseif($auth === false){
+                        $result = $this->mysql->query($query1);
+                        $data = $result->fetch_assoc();
+                        if($data['isAdmin']){
+                                $auth = true;
+                        }
+                }
+
+                if($auth){
+                        $result = $this->mysql->query($query2);
+                        $this->lastName = $lastName;
+                        return true;
+                }else{
+                        return false;
+                }
+        }
+        //sets user firstName
+        public function setFirstName($firstName, $userId, $auth = false){
+                $userId = $this->mysql->real_escape_string($userId);
+                $firstName = $this->mysql->real_escape_string($firstName);
+                $query1 = "SELECT `isAdmin` FROM `user` WHERE userID = '$userId';";
+                $query2 = "UPDATE `user` SET `email`= '$firstName' WHERE userName = '{$this->userName}' AND userID = '{$this->userId}';";
+
+                if($auth === false && $userId == $this->userId)
+                        $auth = true;
+                elseif($auth === false){
+                        $result = $this->mysql->query($query1);
+                        $data = $result->fetch_assoc();
+                        if($data['isAdmin']){
+                                $auth = true;
+                        }
+                }
+
+                if($auth){
+                        $result = $this->mysql->query($query2);
+                        $this->firstName = $firstName;
+                        return true;
+                }else{
+                        return false;
+                }
+        }
+
+
 
 	//logs in the user. returns true on success, false on failure
 	public function login($userName, $password){
