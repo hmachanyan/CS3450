@@ -39,3 +39,17 @@ if($result)
 	echo "Success\n";
 else
 	echo "Failure\n";
+
+$result = $registeredUser->setFirstName('Andrew',4);
+
+if($result)
+	echo "Success\n";
+else
+	echo "Failure\n";
+
+$result = $registeredUser->setLastName('Weight',4);
+
+if($result)
+	echo "Success\n";
+else
+	echo "Failure\n";

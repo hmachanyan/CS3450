@@ -121,7 +121,7 @@ class Registered extends User {
                 $userId = $this->mysql->real_escape_string($userId);
                 $lastName = $this->mysql->real_escape_string($lastName);
                 $query1 = "SELECT `isAdmin` FROM `user` WHERE userID = '$userId';";
-                $query2 = "UPDATE `user` SET `email`= '$lastName' WHERE userName = '{$this->userName}' AND userID = '{$this->userId}';";
+                $query2 = "UPDATE `user` SET `lastName`= '$lastName' WHERE userName = '{$this->userName}' AND userID = '{$this->userId}';";
 
                 if($auth === false && $userId == $this->userId)
                         $auth = true;
@@ -146,7 +146,7 @@ class Registered extends User {
                 $userId = $this->mysql->real_escape_string($userId);
                 $firstName = $this->mysql->real_escape_string($firstName);
                 $query1 = "SELECT `isAdmin` FROM `user` WHERE userID = '$userId';";
-                $query2 = "UPDATE `user` SET `email`= '$firstName' WHERE userName = '{$this->userName}' AND userID = '{$this->userId}';";
+                $query2 = "UPDATE `user` SET `firstName`= '$firstName' WHERE userName = '{$this->userName}' AND userID = '{$this->userId}';";
 
                 if($auth === false && $userId == $this->userId)
                         $auth = true;
