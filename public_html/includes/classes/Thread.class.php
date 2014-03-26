@@ -20,35 +20,35 @@
 		
 		// ***** GETTERS & SETTERS *****
 
-		public getTitle(){
+		public function getTitle(){
 			return this->$title;
 		}
 
-		public setTitle($newTitle){
+		public function setTitle($newTitle){
 			$this->$title = $newTitle;
 		}
 
-		public getStatus(){
+		public function getStatus(){
 			return this->$title;
 		}
 
-		public setStatus($newStatus){
+		public function setStatus($newStatus){
 			$this->$status = $newStatus;
 		}
 
-		public getAuthorID(){
+		public function getAuthorID(){
 			return this->$authorID;
 		}
 
-		public setAuthorID($newAuthorID){
+		public function setAuthorID($newAuthorID){
 			$this->$authorID = $newAuthorID;
 		}
 		
-		public getDate(){
+		public function getDate(){
 			return this->$date;
 		}
 
-		public setDate($newDate){
+		public function setDate($newDate){
 			$this->$date = $newDate;
 		}
 	}

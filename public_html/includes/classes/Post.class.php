@@ -5,11 +5,13 @@
 	/**
 	* Post Class
 	*/
-	class Post extends Thread
+	class Post
 	{
 
 		// ***** VARIABLES *****
 		private $content = "Test content";
+		private $comments = array();
+
 		// ***** VARIABLES *****
 
 		// ***** CONSTRUCTORS ******
@@ -18,12 +20,29 @@
 		// 	# code...
 		// }
 
+
+		// add comment
+		public function addComment($commentContent){
+			array_push($comments,)
+		}
+		// delete comment
+		// edit comment
+
+		// add post
+
+		// edit post
+
+		// delete post
+
+
+
+
 		// ***** GETTERS & Setters *****
-		public getConent(){
+		public function getConent(){
 			return $this->$content;
 		}
 
-		public setContent($newContent){
+		public function setContent($newContent){
 			$this->$content = $newContent;
 		}
 	}
