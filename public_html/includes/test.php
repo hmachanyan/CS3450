@@ -80,3 +80,6 @@ if($result)
 else
         echo "Failure\n";
 
+$test = new Comment();
+
+echo $test->getContent();
