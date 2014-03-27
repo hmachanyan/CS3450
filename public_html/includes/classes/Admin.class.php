@@ -46,8 +46,22 @@
 			}
 		}
 
-		public function deleteUser(){
-		
+		public function deleteUser($userName){
+			$userName = $this->mysql->real_escape_string($userName);
+			$query1 = "SELECT `userID` FROM `user` WHERE userName='$userName';";
+
+			$result = $this->mysql->query($query1);
+			
+			if($result->num_rows === 1){
+				$data = $result->fetch_assoc();
+				$userId = $data['userID'];
+				$query2 = "DELETE FROM `user` WHERE `userID` = '$userId';";
+				$result = $this->mysql->query($query2);
+			}
+			else
+				$result = false;
+
+			return $result;
 		}
 
 		public function resetPassword($userName, $password = ""){
