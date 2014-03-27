@@ -105,3 +105,17 @@ if($result)
         echo "Success\n";
 else
         echo "Failure\n";
+
+
+$data = array(
+	'threadID' => 1,
+	'authorID' => 1,
+	'content' => "Help",
+	'title' => 'title'
+);
+
+$comment = new Comment(0, true, $data);
+
+$comment = new Comment(1);
+
+echo $comment->getContent();
