@@ -177,6 +177,31 @@ class Registered extends User {
 			return false;
 	}
 
+	//Deletes User
+	public function deleteUser($userId, $auth = false){
+		$userId = $this->mysql->real_escape_string($userId);
+                $query1 = "SELECT `isAdmin` FROM `user` WHERE userID = '$userId';";
+                $query2 = "DELETE FROM `user` WHERE `userID` = '{$this->userId}'";
+
+                if($auth === false && $userId == $this->userId)
+                        $auth = true;
+                elseif($auth === false){
+                        $result = $this->mysql->query($query1);
+                        $data = $result->fetch_assoc();
+                        if($data['isAdmin']){
+                                $auth = true;
+                        }
+                }
+
+                if($auth){
+                        $result = $this->mysql->query($query2);
+                        return true;
+                }else{
+                        return false;
+                }
+	
+	}
+
 	//creates a comment on a thread. Requires threadId. Returns true on success, false on failure.
 	public function createComment($threadId, $comment){
 		
