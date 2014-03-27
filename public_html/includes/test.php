@@ -119,3 +119,31 @@ $comment = new Comment(0, true, $data);
 $comment = new Comment(1);
 
 echo $comment->getContent();
+
+$result = $comment->setContent("It Worked");
+
+if($result)
+        echo "Success on update content\n";
+else
+        echo "Failure on update content\n";
+
+$result = $comment->setTitle("success");
+
+if($result)
+        echo "Success on update title\n";
+else
+        echo "Failure on update title\n";
+
+$result = $comment->setAuthID(2);
+
+if($result)
+        echo "Success on update authorID\n";
+else
+        echo "Failure on update authorID\n";
+
+$result = $comment->setDate("2000-03-27");
+
+if($result)
+        echo "Success on update date\n";
+else
+        echo "Failure on update date\n";

@@ -67,20 +67,44 @@
 		}
 
 		// ***** SETTERS *****
-		public function setContent(){
-
+		public function setContent($content){
+			$content = $this->mysql->real_escape_string($content);
+			$query = "UPDATE `comment` SET `content`='$content' WHERE commentID='{$this->commentID}'";
+			$result = $this->mysql->query($query);
+                        if($result === true){
+                                $this->content = $content;
+                        }
+			return $result;
 		}
 
-		public function setAuthId(){
-
+		public function setAuthId($authorID){
+			$authorID = $this->mysql->real_escape_string($authorID);
+                        $query = "UPDATE `comment` SET `authorID`='$authorID' WHERE commentID='{$this->commentID}'";
+                        $result = $this->mysql->query($query);
+                        if($result === true){
+                                $this->authorID = $authorID;
+                        }
+                        return $result;
 		}
 
-		public function setTitle(){
-
+		public function setTitle($title){
+			$title = $this->mysql->real_escape_string($title);
+                        $query = "UPDATE `comment` SET `title`='$title' WHERE commentID='{$this->commentID}'";
+                        $result = $this->mysql->query($query);
+                        if($result === true){
+                                $this->title = $title;
+                        }
+                        return $result;
 		}
 
-		public function setDate(){
-
+		public function setDate($date){
+			$date = $this->mysql->real_escape_string($date);
+                        $query = "UPDATE `comment` SET `date`='$date' WHERE commentID='{$this->commentID}'";
+                        $result = $this->mysql->query($query);
+			if($result === true){
+				$this->date = $date;
+			}
+                        return $result;
 		}
 	}
 
