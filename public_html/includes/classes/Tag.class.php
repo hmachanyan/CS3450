@@ -17,11 +17,11 @@
 
 		// ***** Getters & Setters *****
 
-		public getName(){
+		public function getName(){
 			return $this->$name;
 		}
 
-		public setName($newName){
+		public function setName($newName){
 			$this->$name = $newName;
 		}
 	}

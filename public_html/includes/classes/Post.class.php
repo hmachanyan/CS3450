@@ -1,6 +1,5 @@
 <?php
-
-	require_once('Thread.class.php');
+	require_once("Thread.class.php");
 
 	/**
 	* Post Class

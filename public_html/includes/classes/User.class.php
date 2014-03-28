@@ -1,52 +1,50 @@
 <?php
 
 class User{
-	private $firstName = "Guest";
-	private $isAdmin = false;
-	private $lastName = "";
+	protected $userName = "Guest";
+	protected $firstName = "Guest";
+	protected $isAdmin = false;
+	protected $lastName = "";
+	protected $mysql;
+
+	public function __construct(){
+		$this->mysql = new mysqli(dbHost,dbUser,dbPass,dbName);
+	}
+
+	//receives user data as an array and creates an account for them. Array variable names should be the same as database names.
+	public function register($userData = array()){
+		if(!empty($userData))
+			$result = $this->mysql->query("INSERT INTO `user`(`firstName`, `lastName`, `userName`, `password`, `email`) VALUES ('{$userData['firstName']}','{$userData['lastName']}', '{$userData['userName']}','{$userData['password']}','{$userData['email']}');");
+		else
+			$result = false;
+		if($result)
+			return true;
+		else
+			return false;
+	}
+
+	//returns user firstName
+	public function getFirstName(){
+		return $this->firstName;
+	}
+
+	//returns user lastName
+	public function getLastName(){
+		return $this->lastName;
+	}
+
+	//returns isAdmin
+	public function isAdmin(){
+		return $this->isAdmin;
+	}
 
 	//searches for a thread that is on topic
-	public searchTread($topic){
+	public function searchTread($topic){
 
 	}
 
 	//pulls data for threadId and returns it
-	public viewTread($threadId){
+	public function viewTread($threadId){
 
-	}
-
-	//receives user data and creates an account for them
-	public register($userData = array()){
-
-	}
-
-	//returns user firstName
-	public getFirstName(){
-		return $this->firstName;
-	}
-
-	//sets user firstName
-	public setFirstName($firstName){
-		$this->firstName = $firstName;
-	}
-
-	//returns user lastName
-	public getLastName(){
-		return $this->lastName;
-	}
-
-	//sets user lastName
-	public setLastName($lastName){
-		$this->lastName;
-	}
-	
-	//returns isAdmin
-	public isAdmin(){
-		return $this->isAdmin;
-	}
-
-	//set isAdmin. Requires username of an user that is already an admin.
-	public setIsAdmin($isAdmin, $adminUser){
-		
 	}
 }
