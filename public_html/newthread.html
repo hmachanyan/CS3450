@@ -23,20 +23,12 @@
 			</form>
 		</div>
 		
-		<!-- thread list specific to subforum -->
-		<div class="threadlist">
-			<a href="newthread.html"><button>New Thread</button></a>
-			
-			<!-- variable info - list of threads in subforum-->
-			<!-- get array of subforum's thread titles from database -->
-			<table class="threadlist">
-			<tr><th><!-- name of subforum (e.g. "CS 3450") --></th></tr>
-			<!-- loop for each thread -->
-				<tr><td><a href=""><!-- thread title --></a></td></tr>
-			<!-- end loop -->
-			</table>
-			<!-- page numbers based on number of threads? -->
-			
-		</div>
+		<div class="newthread">
+			<h2>New Thread</h2>
+			<form action="" method="post">
+				<label>Thread Title: </label>
+				<input class="title" name="threadtitle" type="text"/><br/>
+				<textarea rows="20" cols="80"></textarea>
+			</form>
 	</body>
 </html>
