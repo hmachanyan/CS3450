@@ -23,22 +23,16 @@
 			</form>
 		</div>
 		
-		<!-- thread contents -->
-		<div class="thread">
-			<!-- variable info - posts/comments in thread -->
-			<!-- get list of posts in thread -->
-			
-			<table class="postlist">
-				<tr><th><!-- thread title --></th></tr>
-				<tr><td><!-- original post --></td></tr>
-				<!-- loop for each reply -->
-				<tr><td><!-- reply post --></td></tr>
-				<!-- end loop -->
-			</table>
+		<div class="register">
+			<h2>Create Account</h2>
 			<form action="" method="post">
-				<button>Reply to this Thread</button> <!-- TODO: open reply dialogue box -->
+				<label>Username: </label>
+				<input class="username" name="username" type="text"/><br/>
+				<label>Password: </label>
+				<input class="password" name="password" type="text"/><br/>
+				<label>Email Address: </label>
+				<input class="email" name="email" type="text"/><br/>
 			</form>
-			<!-- page numbers for additional replies -->
 		</div>
 	</body>
 </html>

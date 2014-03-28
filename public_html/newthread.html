@@ -23,22 +23,13 @@
 			</form>
 		</div>
 		
-		<!-- thread contents -->
-		<div class="thread">
-			<!-- variable info - posts/comments in thread -->
-			<!-- get list of posts in thread -->
-			
-			<table class="postlist">
-				<tr><th><!-- thread title --></th></tr>
-				<tr><td><!-- original post --></td></tr>
-				<!-- loop for each reply -->
-				<tr><td><!-- reply post --></td></tr>
-				<!-- end loop -->
-			</table>
+		<div class="newthread">
+			<h2>New Thread</h2>
 			<form action="" method="post">
-				<button>Reply to this Thread</button> <!-- TODO: open reply dialogue box -->
+				<label>Thread Title: </label>
+				<input class="title" name="threadtitle" type="text"/><br/>
+				<textarea rows="20" cols="80"></textarea><br/>
+				<input class="makethread" value="Create Thread" type="submit"/>
 			</form>
-			<!-- page numbers for additional replies -->
-		</div>
 	</body>
 </html>

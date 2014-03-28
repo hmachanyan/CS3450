@@ -2,12 +2,28 @@
 
 include 'init.php';
 $User = new User();
+
 $data = array(
-		'firstName' => 'Reese',
+		'firstName' => 'Sarah',
 		'lastName' => 'Bingham',
-		'userName' => 'rbingham1',
+		'userName' => 'sbingham',
 		'password' => 'test123',
 		'email' => 'reese.bingham@aggiemail.usu.edu');
+
+
+$result = $registeredUser = new Registered('sbingham');
+if($result)
+        echo "Success\n";
+else
+        echo "Failure\n";
+
+
+$result = $registeredUser->deleteUser($registeredUser->getUserId());
+
+if($result)
+        echo "Success\n";
+else
+        echo "Failure\n";
 
 $registeredUser = new Registered('rbingham');
 
@@ -58,17 +74,20 @@ $admin = new Admin('rbingham');
 
 $result = $admin->createUser($data);
 
-if($result)
-	echo "Success\n";
-else
-        echo "Failure\n";
-
 $data = array(
                 'firstName' => 'Dean',
                 'lastName' => 'Redington',
                 'userName' => 'rbingham1',
                 'password' => 'test1234',
                 'email' => 'test@test.com');
+
+$result = $admin->createUser($data);
+
+if($result)
+	echo "Success\n";
+else
+        echo "Failure\n";
+
 
 $admin->editUser('rbingham1', $data);
 
@@ -80,6 +99,51 @@ if($result)
 else
         echo "Failure\n";
 
-$test = new Comment();
+$result = $admin->deleteUser('rbingham1');
 
-echo $test->getContent();
+if($result)
+        echo "Success\n";
+else
+        echo "Failure\n";
+
+
+$data = array(
+	'threadID' => 1,
+	'authorID' => 1,
+	'content' => "Help",
+	'title' => 'title'
+);
+
+$comment = new Comment(0, true, $data);
+
+$comment = new Comment(1);
+
+echo $comment->getContent();
+
+$result = $comment->setContent("It Worked");
+
+if($result)
+        echo "Success on update content\n";
+else
+        echo "Failure on update content\n";
+
+$result = $comment->setTitle("success");
+
+if($result)
+        echo "Success on update title\n";
+else
+        echo "Failure on update title\n";
+
+$result = $comment->setAuthID(2);
+
+if($result)
+        echo "Success on update authorID\n";
+else
+        echo "Failure on update authorID\n";
+
+$result = $comment->setDate("2000-03-27");
+
+if($result)
+        echo "Success on update date\n";
+else
+        echo "Failure on update date\n";
